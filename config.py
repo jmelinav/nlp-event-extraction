@@ -39,7 +39,7 @@ entity_type_dictionary_EMO = {
     "DATE":1,
     "PERSON":2,
     "ORGANIZATION":3,
-    "EMOTIONS" :5
+    "EMOTIONS" :4
 }
 
 entity_type_dictionary_CN = {
@@ -47,7 +47,7 @@ entity_type_dictionary_CN = {
     "DATE":1,
     "PERSON":2,
     "ORGANIZATION":3,
-    "COLLECTIVE_NOUNS" :6
+    "COLLECTIVE_NOUNS" :4
 }
 
 entity_type_dictionary_AN = {
@@ -55,7 +55,7 @@ entity_type_dictionary_AN = {
     "DATE":1,
     "PERSON":2,
     "ORGANIZATION":3,
-    "ABSTRACT_NOUNS" :7
+    "ABSTRACT_NOUNS" :4
 }
 
 entity_type_dictionary_GN_CN = {
@@ -64,7 +64,7 @@ entity_type_dictionary_GN_CN = {
     "PERSON":2,
     "ORGANIZATION":3,
     "GENDER_ROLES" :4,
-    "COLLECTIVE_NOUNS" :6
+    "COLLECTIVE_NOUNS" :5
 }
 
 entity_type_dictionary_GN_EMO = {
@@ -81,8 +81,8 @@ entity_type_dictionary_CN_EMO = {
     "DATE":1,
     "PERSON":2,
     "ORGANIZATION":3,
-    "EMOTIONS" :5,
-    "COLLECTIVE_NOUNS" :6
+    "EMOTIONS" :4,
+    "COLLECTIVE_NOUNS" :5
 }
 
 entity_type_dictionary_CN_EMO_GN = {

@@ -24,6 +24,7 @@ class Config:
         self.remove_list = kwargs["remove_list"]
         self.trigger_dictionary = kwargs["trigger_dictionary"]
         self.reinforce_list = kwargs["reinforce_list"]
+        self.entity_type_dictionary = kwargs["entity_type_dictionary"]
 
 entity_type_dictionary = {
     "O":0,
@@ -31,6 +32,78 @@ entity_type_dictionary = {
     "PERSON":2,
     "ORGANIZATION":3,
     "GENDER_ROLES" :4
+}
+
+entity_type_dictionary_EMO = {
+    "O":0,
+    "DATE":1,
+    "PERSON":2,
+    "ORGANIZATION":3,
+    "EMOTIONS" :5
+}
+
+entity_type_dictionary_CN = {
+    "O":0,
+    "DATE":1,
+    "PERSON":2,
+    "ORGANIZATION":3,
+    "COLLECTIVE_NOUNS" :6
+}
+
+entity_type_dictionary_AN = {
+    "O":0,
+    "DATE":1,
+    "PERSON":2,
+    "ORGANIZATION":3,
+    "ABSTRACT_NOUNS" :7
+}
+
+entity_type_dictionary_GN_CN = {
+    "O":0,
+    "DATE":1,
+    "PERSON":2,
+    "ORGANIZATION":3,
+    "GENDER_ROLES" :4,
+    "COLLECTIVE_NOUNS" :6
+}
+
+entity_type_dictionary_GN_EMO = {
+    "O":0,
+    "DATE":1,
+    "PERSON":2,
+    "ORGANIZATION":3,
+    "GENDER_ROLES" :4,
+    "EMOTIONS" :5
+}
+
+entity_type_dictionary_CN_EMO = {
+    "O":0,
+    "DATE":1,
+    "PERSON":2,
+    "ORGANIZATION":3,
+    "EMOTIONS" :5,
+    "COLLECTIVE_NOUNS" :6
+}
+
+entity_type_dictionary_CN_EMO_GN = {
+    "O":0,
+    "DATE":1,
+    "PERSON":2,
+    "ORGANIZATION":3,
+    "EMOTIONS" :5,
+    "GENDER_ROLES" :4,
+    "COLLECTIVE_NOUNS" :6
+}
+
+entity_type_dictionary_ALL = {
+    "O":0,
+    "DATE":1,
+    "PERSON":2,
+    "ORGANIZATION":3,
+    "GENDER_ROLES" :4,
+    "EMOTIONS" :5,
+    "COLLECTIVE_NOUNS" :6,
+    "ABSTRACT_NOUNS" :7
 }
 
 trigger_type_dictionary = {

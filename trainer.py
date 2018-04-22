@@ -3,7 +3,10 @@ from feature import Feature
 import util
 from model import AttentationContextModel
 from config import Config
-from config import entity_type_dictionary, trigger_type_dictionary, binary_trigger_type_dictionary
+from config import entity_type_dictionary, trigger_type_dictionary, binary_trigger_type_dictionary\
+    , entity_type_dictionary_CN, entity_type_dictionary_GN_CN, entity_type_dictionary_CN_EMO\
+    ,entity_type_dictionary_GN_EMO, entity_type_dictionary_EMO,entity_type_dictionary_ALL\
+    , entity_type_dictionary_CN_EMO_GN, entity_type_dictionary_AN
 from config import remove_list_less_50, remove_list_less_100, reinforce_list
 import numpy as np
 import tensorflow as tf
@@ -140,7 +143,7 @@ class Trainer():
         word_dictionary, matrix = util.load_embedding(config.glove_path)
         feature = Feature(
             word_dictionary, 
-            entity_type_dictionary,
+            config.entity_type_dictionary,
             window_size=config.context_window_size
         )
         data_manager = Data()
@@ -181,7 +184,7 @@ class Trainer():
             10000
         )
         self.training_data = self.sample_negative(
-            self.training_data, 
+            self.training_data,
             ratio=config.negative_ratio,
         )
 
@@ -376,12 +379,34 @@ class Trainer():
 def train_model():
 
     # Update the glove pretrained model path and the data path in the path variables below
-    glove_path = "./Glove/glove.6B.300d"
-    data_path = "./data/json/event_detection.data.sample.json"
+
 
     trigger_type = sorted(trigger_type_dictionary.items(), key=lambda x: x[1])
     trigger_type = [t for t, i in trigger_type if t not in remove_list_less_100]
     trigger_dictionary = {t:i for i, t in enumerate(trigger_type)}
+
+    print("Abstract Nouns run")
+    invoke_training(trigger_dictionary, entity_type_dictionary_AN)
+    print("Collective Nouns run")
+    invoke_training(trigger_dictionary, entity_type_dictionary_CN)
+    print("Emotion words run")
+    invoke_training(trigger_dictionary, entity_type_dictionary_EMO)
+    print("GN AND CN run")
+    invoke_training(trigger_dictionary, entity_type_dictionary_GN_CN)
+    print("GN AND EMOTION run")
+    invoke_training(trigger_dictionary, entity_type_dictionary_GN_EMO)
+    print("CN AND EMOTION run")
+    invoke_training(trigger_dictionary, entity_type_dictionary_CN_EMO)
+    print("CN, GN AND EMOTION run")
+    invoke_training(trigger_dictionary, entity_type_dictionary_CN_EMO_GN)
+    print("ALL 4 Features run")
+    invoke_training(trigger_dictionary, entity_type_dictionary_ALL)
+
+
+def invoke_training(trigger_dictionary,entity_type_dictionary):
+    glove_path = "./Glove/glove.6B.300d"
+    #data_path = "./data/json/event_detection.data.sample.json"
+    data_path = "./data/json/event_detection.data.filter.json"
 
     config = Config(
         # glove_path=os.path.join(home_dir, "corpus/glove/glove.6B.300d"),
@@ -392,18 +417,19 @@ def train_model():
         entity_size=len(entity_type_dictionary),
         context_window_size=5,
         batch_size=128,
-        epochs=500,
+        epochs=100,
         machine="/cpu:0",
         negative_ratio=0.1,
         lamb=5,
         drop_rate=0.6,
         remove_list=remove_list_less_100,
         trigger_dictionary=trigger_dictionary,
-        reinforce_list=reinforce_list
+        reinforce_list=reinforce_list,
+        entity_type_dictionary = entity_type_dictionary
     )
-
     trainer = Trainer()
     trainer.train_normal(config)
+
 
 if __name__ == "__main__":
     train_model()    

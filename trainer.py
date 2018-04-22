@@ -394,13 +394,13 @@ def train_model():
     print("GN AND CN run")
     invoke_training(trigger_dictionary, entity_type_dictionary_GN_CN)
     print("GN AND EMOTION run")
-    invoke_training(trigger_dictionary, entity_type_dictionary_GN_EMO)
+    #invoke_training(trigger_dictionary, entity_type_dictionary_GN_EMO)
     print("CN AND EMOTION run")
-    invoke_training(trigger_dictionary, entity_type_dictionary_CN_EMO)
+    #invoke_training(trigger_dictionary, entity_type_dictionary_CN_EMO)
     print("CN, GN AND EMOTION run")
-    invoke_training(trigger_dictionary, entity_type_dictionary_CN_EMO_GN)
+    #invoke_training(trigger_dictionary, entity_type_dictionary_CN_EMO_GN)
     print("ALL 4 Features run")
-    invoke_training(trigger_dictionary, entity_type_dictionary_ALL)
+    #invoke_training(trigger_dictionary, entity_type_dictionary_ALL)
 
 
 def invoke_training(trigger_dictionary,entity_type_dictionary):
